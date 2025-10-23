@@ -1,0 +1,39 @@
+// Approach explanation: https://www.youtube.com/watch?v=JDOXKqF60RQ
+
+func nextPermutation(nums []int)  {
+    n := len(nums)
+    index := -1
+    for i:= n -2 ;i>= 0;i--{
+        if nums[i]< nums[i+1]{
+            index = i
+            break
+        }
+    }
+
+    if index == -1{
+        reverseArray(&nums,0,n-1)
+        return 
+    }
+
+    // finding the greatest element from the left array (which is just greater) to element on our index
+    
+    for i:= n-1 ;i>=index+1 ;i--{
+        if nums[i]>nums[index]{
+            //Swaaping
+            nums[index],nums[i]= nums[i],nums[index]
+            break
+        }
+    }
+
+    // Now we have to fix the right most array only , thats too in ascending order only
+
+    reverseArray(&nums,index+1,n-1)
+    return 
+}
+
+func reverseArray(arr *[]int, startIndex int, endIndex int) []int {
+	for i, j := startIndex, endIndex; i < j; i, j = i+1, j-1 {
+		(*arr)[i], (*arr)[j] = (*arr)[j], (*arr)[i]
+	}
+	return *arr
+}
