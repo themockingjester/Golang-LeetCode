@@ -1,0 +1,18 @@
+// Approach: https://www.youtube.com/watch?v=6sMssUHgaBs
+func sortColors(nums []int)  {
+    start,end:= 0,len(nums)-1
+    middle:=0
+    for middle<=end {
+        if nums[middle]==1{
+            middle++
+
+        } else if nums[middle]==0{
+            nums[middle],nums[start]=nums[start],nums[middle]
+            start++
+            middle++
+        } else{
+            nums[middle],nums[end]=nums[end],nums[middle]
+            end--
+        }
+    }
+}
