@@ -1,0 +1,40 @@
+// https://www.youtube.com/watch?v=IexN60k62jo
+import (
+    "fmt"
+    "sort"
+    )
+func merge(intervals [][]int) [][]int {
+    intervals= sortArrayWithIntervals(intervals)
+    resultArr:= mergeHelper(intervals)
+    return resultArr
+}
+
+
+func mergeHelper(intervals [][]int) ([][]int) {
+    var resultArr [][]int
+    for i := 0;i<len(intervals);i++{
+        curr:=intervals[i]
+        if len(resultArr)>0 && curr[0] <= resultArr[len(resultArr)-1][1] {
+            resultArr[len(resultArr)-1][1] = max(curr[1],resultArr[len(resultArr)-1][1])
+            
+        } else {
+            resultArr = append(resultArr, []int{curr[0], curr[1]})
+
+        }
+    }
+
+
+    return resultArr
+}
+
+
+func sortArrayWithIntervals(arr [][]int) [][]int {
+    // Sort intervals by start value, and then by end value if start is same
+    sort.Slice(arr, func(i, j int) bool {
+        if arr[i][0] == arr[j][0] {
+            return arr[i][1] < arr[j][1]
+        }
+        return arr[i][0] < arr[j][0]
+    })
+    return arr
+}
