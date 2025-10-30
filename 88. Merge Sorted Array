@@ -1,0 +1,18 @@
+func merge(nums1 []int, m int, nums2 []int, n int)  {
+   
+   left:= m-1
+   right:= n-1
+   middle:= len(nums1)-1
+
+   for right>=0{
+        if left>=0 && nums1[left]>nums2[right]{
+            nums1[middle]=nums1[left]
+            middle--
+            left--
+        } else {
+            nums1[middle]=nums2[right]
+            right--
+            middle--
+        }
+   }
+}
