@@ -1,0 +1,38 @@
+func findMissingRepeatingNumbers(nums []int) []int {
+    repeatingNumber:= findDuplicate(nums)
+    targetSum:=len(nums)*(len(nums)+1) / 2
+
+    // manually calculate sum
+    totalSum := 0
+    for _, num := range nums {
+        totalSum += num
+    }
+    missingNumber:= targetSum-(totalSum-repeatingNumber)
+    return []int {repeatingNumber,missingNumber}
+}
+
+func findDuplicate(nums []int) int {
+    slow:=0
+    fast:=0
+
+    for true {
+        fast=nums[nums[fast]]
+        slow=nums[slow]
+        if fast== slow {
+            break
+        }
+    }
+
+    fast=0
+
+    for true{
+        fast=nums[fast]
+        slow=nums[slow]
+        if fast==slow{
+            break
+        }
+
+    }
+
+    return slow
+}
