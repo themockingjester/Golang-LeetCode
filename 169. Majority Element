@@ -1,0 +1,21 @@
+// Approach:= https://www.youtube.com/watch?v=nP_ns3uSh80
+func majorityElement(nums []int) int {
+    majorityElem:=nums[0]
+    majorityCount:=1
+    ctr:=1
+    for ctr<len(nums){
+        if majorityElem != nums[ctr]{
+            if majorityCount==0{
+                majorityCount=1
+                majorityElem=nums[ctr]
+            } else {
+                majorityCount-=1
+            }
+        } else {
+            majorityCount+=1
+        }
+        ctr++
+    }
+    return majorityElem
+
+}
