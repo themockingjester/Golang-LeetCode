@@ -1,0 +1,25 @@
+// Approach: https://www.youtube.com/watch?v=l0YC3876qxg
+
+func myPow(x float64, n int) float64 {
+    var result float64 = 1
+    var nn int = n
+    if nn<0 {
+        nn=nn*-1
+    }
+    for nn>0{
+        if nn%2 == 0{
+
+            x*=x
+            nn/=2
+        } else {
+            result=result*x
+            nn-=1
+
+        }
+    }
+    if (n<0){
+        return 1/result
+    }
+    return result
+
+}
