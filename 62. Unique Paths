@@ -1,0 +1,29 @@
+func uniquePaths(m int, n int) int {
+    memo:= make(map[[2]int]int)
+    result:= recursive(0,0,m,n,memo)
+    return result
+
+}
+func recursive(currCol,currRow,m,n int,memo map[[2]int]int) int {
+
+    key := [2]int{currCol,currRow}
+    if currCol == n-1 && currRow == m-1 { 
+        return 1
+    }
+    if currCol >= n || currRow >= m {
+        return 0
+    }
+     if val, ok := memo[key]; ok {
+        return val
+    }
+    right:=recursive(currCol+1,currRow,m,n,memo)
+    down:=recursive(currCol,currRow+1,m,n,memo)
+
+    memo[key]=right+down
+    return memo[key]
+
+}
+
+// Time: O(m * n)
+
+// Space: O(m * n) (due to memoization)
