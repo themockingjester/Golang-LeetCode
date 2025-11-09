@@ -1,0 +1,16 @@
+func twoSum(nums []int, target int) []int {
+    result:= []int{}
+    myMap:= make(map[int]int)
+    for i:=0;i<len(nums);i++{
+        curr := nums[i]
+        value, ok := myMap[target-curr]
+        if ok {
+            result=append(result,value)
+            result=append(result,i)
+        }  else {
+            myMap[curr]=i
+        }
+    }
+    return result
+    
+}
