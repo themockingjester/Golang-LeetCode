@@ -1,0 +1,78 @@
+
+/**
+ * Definition for singly-linked list.
+ * type ListNode struct {
+ *     Val int
+ *     Next *ListNode
+ * }
+ */
+func mergeTwoLists(list1 *ListNode, list2 *ListNode) *ListNode {
+	curr1, curr2 := list1, list2
+	var result *ListNode
+	var resultHead *ListNode
+	for true {
+		if curr1 != nil && curr2 != nil {
+
+			var temp *ListNode = &ListNode{
+				Val:  -1,
+				Next: nil,
+			}
+			if curr1.Val < curr2.Val {
+				temp.Val = curr1.Val
+				curr1 = curr1.Next
+			} else {
+				temp.Val = curr2.Val
+				curr2 = curr2.Next
+			}
+			if resultHead != nil {
+				resultHead.Next = temp
+				resultHead = resultHead.Next
+			} else {
+				resultHead = temp
+				result = temp
+
+			}
+
+		} else if curr1 == nil && curr2 != nil {
+
+			var temp *ListNode = &ListNode{
+				Val:  -1,
+				Next: nil,
+			}
+			temp.Val = curr2.Val
+			curr2 = curr2.Next
+
+			if resultHead != nil {
+				resultHead.Next = temp
+
+				resultHead = resultHead.Next
+			} else {
+				resultHead = temp
+				result = temp
+			}
+
+		} else if curr1 != nil && curr2 == nil {
+
+			var temp *ListNode = &ListNode{
+				Val:  -1,
+				Next: nil,
+			}
+			temp.Val = curr1.Val
+			curr1 = curr1.Next
+
+			if resultHead != nil {
+				resultHead.Next = temp
+				resultHead = resultHead.Next
+			} else {
+				resultHead = temp
+				result = temp
+
+			}
+
+		} else {
+			break
+		}
+	}
+
+	return result
+}
