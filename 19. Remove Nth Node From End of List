@@ -1,0 +1,30 @@
+// Approach https://www.youtube.com/watch?v=Lhu3MsXZy-Q&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=31
+
+/**
+ * Definition for singly-linked list.
+ * type ListNode struct {
+ *     Val int
+ *     Next *ListNode
+ * }
+ */
+func removeNthFromEnd(head *ListNode, n int) *ListNode {
+    start:= &ListNode{}
+    start.Next=head
+    fast:=start
+    slow := start
+
+    for i:= 0;i< n ;i++{
+        fast=fast.Next
+    }
+
+
+
+    for fast.Next!=nil {
+        fast=fast.Next
+        slow=slow.Next
+    }
+
+    slow.Next = slow.Next.Next
+
+    return start.Next
+}
