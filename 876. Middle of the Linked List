@@ -1,0 +1,19 @@
+// Approach : https://www.youtube.com/watch?v=sGdwSH8RK-o&list=PLgUwDviBIf0p4ozDR_kJJkONnb1wdx2Ma&index=31
+
+/**
+ * Definition for singly-linked list.
+ * type ListNode struct {
+ *     Val int
+ *     Next *ListNode
+ * }
+ */
+func middleNode(head *ListNode) *ListNode {
+    fast,slow:=head,head
+
+    for fast != nil && fast.Next != nil{
+        fast=fast.Next.Next
+        slow=slow.Next
+
+    }
+    return slow
+}
