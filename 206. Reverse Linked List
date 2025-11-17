@@ -1,0 +1,43 @@
+/**
+ * Definition for singly-linked list.
+ * type ListNode struct {
+ *     Val int
+ *     Next *ListNode
+ * }
+ */
+
+
+
+func recursiveSol(curr *ListNode,prev *ListNode) *ListNode {    
+        if curr == nil {
+            return prev
+        }
+        nextNode:= curr.Next
+        curr.Next = prev
+        prev=curr
+        curr=nextNode
+        
+        return recursiveSol(curr,prev)
+
+}
+
+// Iterative soln
+func iterativeSol(head *ListNode) *ListNode {    
+    var previous *ListNode
+    curr:=head
+    for curr != nil {
+        nextNode:= curr.Next
+        curr.Next=previous
+        previous= curr
+        curr=nextNode
+
+    }
+
+    return previous
+
+}
+func reverseList(head *ListNode) *ListNode {
+    var prev *ListNode
+    return recursiveSol(head,prev)
+
+}
