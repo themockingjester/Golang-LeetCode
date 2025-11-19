@@ -1,0 +1,59 @@
+/**
+ * Definition for singly-linked list.
+ * type ListNode struct {
+ *     Val int
+ *     Next *ListNode
+ * }
+ */
+func getIntersectionNode(headA, headB *ListNode) *ListNode {
+	l1 := 0
+	l2 := 0
+	var lis1 *ListNode = headA
+	var lis2 *ListNode = headB
+	for true {
+		if lis2 == nil && lis1 == nil {
+			break
+		}
+		if lis1 != nil {
+			l1 += 1
+			lis1 = lis1.Next
+		}
+		if lis2 != nil {
+			l2 += 1
+			lis2 = lis2.Next
+		}
+	}
+	diff := 0
+	if l1 > l2 {
+		diff = l1 - l2
+		lis1 = headA
+		lis2 = headB
+
+		for i := 0; i < diff; i++ {
+			lis1 = lis1.Next
+		}
+	} else {
+		diff = l2 - l1
+		lis2 = headB
+		lis1 = headA
+
+		for i := 0; i < diff; i++ {
+			lis2 = lis2.Next
+		}
+	}
+	var result *ListNode
+	for true {
+		if lis1 == nil || lis2 == nil {
+			break
+		}
+		if lis1 == lis2 {
+			result = lis1
+			break
+		}
+
+		lis1 = lis1.Next
+		lis2 = lis2.Next
+	}
+
+	return result
+}
